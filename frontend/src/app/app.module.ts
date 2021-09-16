@@ -7,6 +7,7 @@ import { FullComponent } from './layout/full/full.component';
 import { ContentComponent } from './layout/content/content.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     SharedModule,
     NgbModule
+  ],
+  exports: [
   ],
   providers: [],
   bootstrap: [AppComponent]

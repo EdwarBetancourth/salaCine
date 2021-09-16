@@ -1,1 +1,31 @@
-<p>login works!</p>
+            <!-- LOGIN -->
+<form [formGroup]="formLogin" class="p-5" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <label for="email" class="form-label">Correo electrónico:</label>
+        <input type="email" class="form-control" formControlName="email">
+        <div class="text-danger" *ngIf="controls.email.errors && (controls.email.touched || controls.email.dirty)">
+            <span *ngIf="controls.email.errors?.email">Debe ingresar un correo valido.</span>
+            <br>
+            <span *ngIf="controls.email.errors?.required">El correo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <label for="password" class="form-label">Contraseña:</label>
+        <input type="password" class="form-control" formControlName="password">
+        <div class="text-danger" *ngIf="controls.password.errors && (controls.password.touched || controls.password.dirty)">
+            <span *ngIf="controls.password.errors?.required">La contraseña es requerida.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <input type="checkbox" class="form-check-input mx-2" formControlName="remember">
+        <label for="remember" class="form-label"> Recordarme</label>
+    </div>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-secondary" [disabled]="formLogin.invalid" > Iniciar Sesión</button>
+    </div>
+    <div class="my-3 d-grid">
+        <span class="text-center">No tienes cuenta &nbsp; <a routerLink="/content/signup"> Registrar</a></span>
+        <br>
+        <span class="text-center"><a href="#">Recuperar contraseña</a></span>
+    </div>
+</form>

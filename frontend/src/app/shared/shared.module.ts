@@ -7,6 +7,7 @@ import { ImageBrokenDirective } from './directives/image-broken.directive';
     ImageBrokenDirective
   ],
   imports: [
+    
   ],
   exports: [
     ImageBrokenDirective
