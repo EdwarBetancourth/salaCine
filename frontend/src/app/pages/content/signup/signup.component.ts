@@ -32,6 +32,12 @@ export class SignupComponent {
     return this.formSignup.controls;
   }
 
+  onSubmit(){
+    console.log(this.formSignup.valid)
+    console.log(this.formSignup.invalid)
+    console.log(this.formSignup.value)
+  }
+
   passwordMatchValidator(password: string, passwordc: string) {
     return (formGroup: FormGroup) => {
       const control_password = formGroup.controls[password];
@@ -41,7 +47,6 @@ export class SignupComponent {
 			} else {
 				control_passwordc.setErrors(null);
 			}
-
     }
   }
 

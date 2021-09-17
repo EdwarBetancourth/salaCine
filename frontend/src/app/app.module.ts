@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule
   ],
   exports: [
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
