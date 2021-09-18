@@ -1,0 +1,14 @@
+version: '3.3'
+
+services: 
+  postgres:
+    image: postgres:13
+    environment: 
+      - POSTGRES_DB=salaCine
+      - POSTGRES_USER=edwar
+      - POSTGRES_PASSWORD=sa..123
+    ports: 
+      - '5433:5432'
+    volumes:
+      - ./postgres_data:/var/lib/postgresql
+    
