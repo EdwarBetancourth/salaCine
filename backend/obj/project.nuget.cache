@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "cFpakQrxVlbvd8qm5cgnKuKVwWYejN6wNuJRnN1Lt/6GjFaRGuBMLDlg1ousfNmZDu3LU3A1+tgCgfp1iav7jA==",
+  "success": true,
+  "projectFilePath": "/home/desarrollo1/Documents/test/salaCine/backend/backend.csproj",
+  "expectedPackageFiles": [
+    "/home/desarrollo1/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/desarrollo1/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/desarrollo1/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/home/desarrollo1/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/home/desarrollo1/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/home/desarrollo1/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}

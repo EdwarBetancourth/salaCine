@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces';
 
 @Component({
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
   rememberme!: User;
 
   constructor(
-    private fb: FormBuilder ) {
+    private fb: FormBuilder,
+    private router: Router
+    ) {
       this.buildForm()
     }
 
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.valid) {
       console.log(this.formLogin.value)
     }
+    this.router.navigate(['full'])
   }
 
   validRemember () {

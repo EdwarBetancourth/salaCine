@@ -1,5 +1,5 @@
 <!-- SIGNUP -->
-<form  [formGroup]="formSignup" class="p-5">
+<form  [formGroup]="formSignup" class="p-5" (ngSubmit)="onSubmit()">
     <div class="mb-4">
         <div class="row">
             <div class="col">
@@ -32,10 +32,12 @@
         <input type="password" class="form-control" formControlName="password">
         <div class="text-danger" *ngIf="controls.password.errors && (controls.password.touched || controls.password.dirty)">
             <span *ngIf="controls.password.errors?.required">El campo es requerido.</span>
+            <br>
+            <span *ngIf="controls.password.errors?.minlength">La contraseña debe ser minimo de 8 caracteres.</span>
         </div>
     </div>
     <div class="mb-4">
-        <label for="passwordc" class="form-label">Contraseña:</label>
+        <label for="passwordc" class="form-label">Confirmar Contraseña:</label>
         <input type="password" class="form-control" formControlName="passwordc">
         <div class="text-danger" *ngIf="controls.passwordc.errors && (controls.passwordc.touched || controls.passwordc.dirty)">
             <span >Las contraseñas deben coincidir.</span>
@@ -44,11 +46,14 @@
     <div class="mb-4">
         <input type="checkbox" class="form-check-input mx-2" formControlName="acepted">
         <label for="acepted" class="form-label"> Acepto terminos y condiciones</label>
+        <div class="text-danger" *ngIf="controls.acepted.errors && (controls.acepted.touched || controls.acepted.dirty)">
+            <span >Debe aceptar los terminos y condiciones.</span>
+        </div>
     </div>
     <div class="d-grid">
-        <button type="submit" class="btn btn-secondary" [disabled]="formSignup.invalid"> Registrar</button>
+        <button type="submit" class="btn btn-danger" [disabled]="formSignup.invalid"> Registrar</button>
     </div>
     <div class="d-grid">
-        <button type="button" class="btn btn-light" routerLink="/content/login"> Regresar</button>
+        <button type="button" class="btn btn-dark" routerLink="/content/login"> Regresar</button>
     </div>
 </form>
