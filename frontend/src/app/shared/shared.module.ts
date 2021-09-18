@@ -19,7 +19,9 @@ import { ViewMovieComponent } from './components/view-movie/view-movie.component
   ],
   exports: [
     ImageBrokenDirective,
-    NavbarComponent
+    NavbarComponent,    
+    SmallMovieComponent,
+    ViewMovieComponent
   ]
 })
 

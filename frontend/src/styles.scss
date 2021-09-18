@@ -7,3 +7,16 @@ body {
     background-color: black;
     color: white;
 }
+
+.movie-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    padding: 0;
+    margin-right: -15px;
+    li {
+        width: 25%;
+        padding: 15px;
+    }
+}
