@@ -5,6 +5,7 @@ import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss']
 })
+
 export class ContentComponent implements OnInit {
 
   constructor(private element: ElementRef) { }
