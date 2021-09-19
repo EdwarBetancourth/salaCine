@@ -14,7 +14,7 @@ export class ImageBrokenDirective implements OnChanges {
   @HostListener('error')
   replace() {
     const element = this.element.nativeElement;
-    element.src = "./assets/imagenotfound.jpeg"
+    element.src = "./assets/notfound.jpg"
   }
 
 }

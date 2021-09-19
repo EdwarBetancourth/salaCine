@@ -1,3 +1,8 @@
 <div class="card bg-dark" style="width: 18rem;">
-    <img src="https://es.web.img2.acsta.net/medias/nmedia/18/89/68/19/20061877.jpg" class="card-img-top" alt="El señor de los anillos">
+    <img appImageBroken [src]="movie.image" class="card-img-top" alt="El señor de los anillos">
+    <div class="card-body">
+      <h5 class="card-title text-center">{{movie.name}}</h5>
+      <p class="card-text text-center">{{movie.description}}</p>
+      <a class="btn btn-primary text-center" routerLink="/full/view-movie/{{movie.code}}" >Reservar</a>
+    </div>
   </div>

@@ -1,0 +1,25 @@
+<div class="card mb-3 bg-dark" *ngIf="selectedMovie">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img appImageBroken [src]="selectedMovie.image" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ selectedMovie.name  }}</h5>
+          <p class="card-text">{{ selectedMovie.description  }}</p>
+
+        </div>
+        <div class="card-footer">
+            <h4 class="card-title"> Horarios </h4>
+            <div *ngIf="tickets.length > 0; else ElseBlock">
+                <small class="text-muted" *ngFor="let ticket of tickets">Sala {{ ticket.room_id }} hora de presentacion {{ ticket.hour }}pm &nbsp;&nbsp;
+                    <button class="btn btn-danger">+</button>
+                </small>
+            </div>
+            <ng-template #ElseBlock>
+                <p class="card-text"> No hay datos para mostrar</p>
+            </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>

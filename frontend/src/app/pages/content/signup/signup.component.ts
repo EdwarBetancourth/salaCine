@@ -1,28 +1,39 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent {
+export class SignupComponent implements OnDestroy {
 
   formSignup!: FormGroup;
+  listSubscriptions: Subscription[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.buildForm()
+  }
+  ngOnDestroy(): void {
+    this.listSubscriptions.forEach(s => s.unsubscribe() );
   }
 
   buildForm() {
     this.formSignup = this.fb.group({
       name: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordc: ['', [Validators.required]],
       acepted: [false, Validators.requiredTrue],
+      rol: ['', [Validators.required]]
     }, {
       validator: this.passwordMatchValidator('password', 'passwordc')
     })
@@ -32,21 +43,24 @@ export class SignupComponent {
     return this.formSignup.controls;
   }
 
-  onSubmit(){
-    console.log(this.formSignup.valid)
-    console.log(this.formSignup.invalid)
-    console.log(this.formSignup.value)
+  onSubmit() {
+    if (this.formSignup.valid) {
+      const sub$ = this.authService.signup(this.formSignup.value).subscribe( () => 
+        this.router.navigate(['full'])
+      )
+      this.listSubscriptions.push( sub$ )
+    }
   }
 
   passwordMatchValidator(password: string, passwordc: string) {
     return (formGroup: FormGroup) => {
       const control_password = formGroup.controls[password];
-			const control_passwordc = formGroup.controls[passwordc];
+      const control_passwordc = formGroup.controls[passwordc];
       if (control_password.value !== control_passwordc.value) {
-				control_passwordc.setErrors({ validaPass: true });
-			} else {
-				control_passwordc.setErrors(null);
-			}
+        control_passwordc.setErrors({ validaPass: true });
+      } else {
+        control_passwordc.setErrors(null);
+      }
     }
   }
 

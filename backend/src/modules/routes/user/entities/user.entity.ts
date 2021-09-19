@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity()
+@Entity('users')
 export class User {
 
     @PrimaryGeneratedColumn()
@@ -12,7 +12,7 @@ export class User {
     @Column({ type:  'varchar', nullable: false})
     lastname: string;
 
-    @Column({ type:  'varchar', nullable: false})
+    @Column({ type:  'varchar', nullable: false, unique: true })
     username: string;
 
     @Column({ type:  'varchar', nullable: false})

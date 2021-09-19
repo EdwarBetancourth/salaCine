@@ -1,0 +1,13 @@
+<h2> Crear Sala </h2>
+<form [formGroup]="formRoom" class="p-5" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <label for="name" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" formControlName="name">
+        <div class="text-danger" *ngIf="controls.name.errors && (controls.name.touched || controls.name.dirty)">
+            <span *ngIf="controls.name.errors?.required">El campo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <button type="submit" class="btn btn-danger" [disabled]="formRoom.invalid" >Guardar</button>
+    </div>
+</form>

@@ -5,13 +5,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { SmallMovieComponent } from './components/small-movie/small-movie.component';
 import { ViewMovieComponent } from './components/view-movie/view-movie.component';
+import { GeneralPipe } from './pipes/general.pipe';
 
 @NgModule({
   declarations: [
     ImageBrokenDirective,
     NavbarComponent,
     SmallMovieComponent,
-    ViewMovieComponent
+    ViewMovieComponent,
+    GeneralPipe
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { ViewMovieComponent } from './components/view-movie/view-movie.component
     ImageBrokenDirective,
     NavbarComponent,    
     SmallMovieComponent,
-    ViewMovieComponent
+    ViewMovieComponent,
+    GeneralPipe
   ]
 })
 

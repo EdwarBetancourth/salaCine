@@ -1,1 +1,16 @@
-<p>administrator works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <div class="sidebar">
+                <a routerLink="/full/administrator/create-movie" routerLinkActive="active"> Crear Pelicula</a>
+                <a routerLink="/full/administrator/create-room" routerLinkActive="active"> Crear Sala </a>
+                <a routerLink="/full/administrator/create-ticket" routerLinkActive="active"> Taquilla </a>
+                <a> Concurrentes </a>
+                <a> Usuarios </a>
+            </div>
+        </div>
+        <div class="col py-5">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

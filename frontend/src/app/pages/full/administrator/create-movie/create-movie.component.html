@@ -1,0 +1,28 @@
+<h2> Crear Pelicula </h2>
+<form [formGroup]="formMovie" class="p-5" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <label for="name" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" formControlName="name">
+        <div class="text-danger" *ngIf="controls.name.errors && (controls.name.touched || controls.name.dirty)">
+            <span *ngIf="controls.name.errors?.required">El campo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <label for="description" class="form-label">Descripción:</label>
+        <textarea type="text" class="form-control" formControlName="description"></textarea>
+        <div class="text-danger"
+            *ngIf="controls.description.errors && (controls.description.touched || controls.description.dirty)">
+            <span *ngIf="controls.description.errors?.required">El campo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <label for="image" class="form-label">Imagen:</label>
+        <input type="text" class="form-control" formControlName="image">
+        <div class="text-danger" *ngIf="controls.image.errors && (controls.image.touched || controls.image.dirty)">
+            <span *ngIf="controls.image.errors?.required">El campo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <button type="submit" class="btn btn-danger" [disabled]="formMovie.invalid" >Guardar</button>
+    </div>
+</form>

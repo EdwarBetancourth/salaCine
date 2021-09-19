@@ -1,0 +1,39 @@
+<h2> Crear Sala </h2>
+<form [formGroup]="formTicket" class="p-5" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <label for="movie_id" class="form-label">Pelicula:</label>
+        <select class="form-select" aria-label="Default select example" formControlName="movie_id">
+            <option selected>Elegir Pelicula</option>
+            <option [value]="movie.code" *ngFor="let movie of movies">{{ movie.name | titlecase }}</option>
+          </select>
+        <div class="text-danger" *ngIf="controls.movie_id.errors && (controls.movie_id.touched || controls.movie_id.dirty)">
+            <span *ngIf="controls.movie_id.errors?.required">El campo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <label for="room_id" class="form-label">Sala:</label>
+        <select class="form-select" aria-label="Default select example" formControlName="room_id">
+            <option selected>Elegir Sala</option>
+            <option [value]="room.id" *ngFor="let room of rooms">{{ room.name | titlecase }}</option>
+          </select>
+        <div class="text-danger" *ngIf="controls.room_id.errors && (controls.room_id.touched || controls.room_id.dirty)">
+            <span *ngIf="controls.room_id.errors?.required">El campo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <label for="hour" class="form-label">Hora:</label>
+        <select class="form-select" aria-label="Default select example" formControlName="hour">
+            <option selected>Elegir Sala</option>
+            <option value="4" > 4 PM</option>
+            <option value="6" > 6 PM</option>
+            <option value="8" > 8 PM</option>
+            <option value="10" > 10 PM</option>
+          </select>
+        <div class="text-danger" *ngIf="controls.hour.errors && (controls.hour.touched || controls.hour.dirty)">
+            <span *ngIf="controls.hour.errors?.required">El campo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <button type="submit" class="btn btn-danger" [disabled]="formTicket.invalid" >Guardar</button>
+    </div>
+</form>

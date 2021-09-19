@@ -1,12 +1,12 @@
             <!-- LOGIN -->
 <form [formGroup]="formLogin" class="p-5" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-        <label for="email" class="form-label">Correo electrónico:</label>
-        <input type="email" class="form-control" formControlName="email">
-        <div class="text-danger" *ngIf="controls.email.errors && (controls.email.touched || controls.email.dirty)">
-            <span *ngIf="controls.email.errors?.email">Debe ingresar un correo valido.</span>
+        <label for="username" class="form-label">Correo electrónico:</label>
+        <input type="email" class="form-control" formControlName="username">
+        <div class="text-danger" *ngIf="controls.username.errors && (controls.username.touched || controls.username.dirty)">
+            <span *ngIf="controls.username.errors?.email">Debe ingresar un correo valido.</span>
             <br>
-            <span *ngIf="controls.email.errors?.required">El correo es requerido.</span>
+            <span *ngIf="controls.username.errors?.required">El correo es requerido.</span>
         </div>
     </div>
     <div class="mb-4">
