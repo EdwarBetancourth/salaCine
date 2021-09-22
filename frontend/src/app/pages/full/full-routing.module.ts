@@ -4,11 +4,13 @@ import { ViewMovieComponent } from './view-movie/view-movie.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
+import { AuthGuard } from 'src/app/services/auth/auth.guard';
 
 const routes: Routes = [
   { 
     path: 'administrator', 
     component: AdministratorComponent,
+    canActivateChild: [AuthGuard],
     loadChildren: () => import('./administrator/administrator.module').then( m => m.AdministratorModule )
   },
   { path: 'home', component: HomeComponent },

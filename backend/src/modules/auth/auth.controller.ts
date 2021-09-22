@@ -18,9 +18,9 @@ export class AuthController {
         return this.authService.signup(body)
     } 
 
-    @Post('forgot')
+    @Post('recover')
     forgot(@Body() body: any) {
-        return this.authService.forgot(body)
+        return this.authService.recover(body)
     }
     
 }

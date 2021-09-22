@@ -1,0 +1,36 @@
+<!-- RECOVER -->
+<form [formGroup]="formRecover" class="p-5" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+        <label for="username" class="form-label">Correo electrónico:</label>
+        <input type="email" class="form-control" formControlName="username">
+        <div class="text-danger"
+            *ngIf="controls.username.errors && (controls.username.touched || controls.username.dirty)">
+            <span *ngIf="controls.username.errors?.email">Debe ingresar un correo valido.</span>
+            <br>
+            <span *ngIf="controls.username.errors?.required">El correo es requerido.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <label for="password" class="form-label">Contraseña:</label>
+        <input type="password" class="form-control" formControlName="password">
+        <div class="text-danger"
+            *ngIf="controls.password.errors && (controls.password.touched || controls.password.dirty)">
+            <span *ngIf="controls.password.errors?.required">La contraseña es requerida.</span> 
+            <br>
+            <span *ngIf="controls.password.errors?.minlength">La contraseña debe ser minimo de 8 caracteres.</span>
+        </div>
+    </div>
+    <div class="mb-4">
+        <label for="passwordc" class="form-label">Confirmar Contraseña:</label>
+        <input type="password" class="form-control" formControlName="passwordc">
+        <div class="text-danger" *ngIf="controls.passwordc.errors && (controls.passwordc.touched || controls.passwordc.dirty)">
+            <span>Las contraseñas deben coincidir.</span>
+        </div>
+    </div>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-danger"> Iniciar Sesión</button>
+    </div>
+    <div class="my-3 d-grid">
+        <span class="text-center" routerLink="/content"> Regresar</span>
+    </div>
+</form>

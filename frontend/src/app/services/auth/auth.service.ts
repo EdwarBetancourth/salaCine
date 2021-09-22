@@ -32,9 +32,22 @@ export class AuthService {
     .pipe( tap( (accessToken: any) => localStorage.setItem('access_token', accessToken['access_token']) ) )
   }
 
+  recover(user: any): Observable<any> {
+    return this.http.post<any>(this.urlApi + 'recover', user)
+  }
+
   logout() {
     localStorage.removeItem('access_token')
     this.router.navigate(['pages/login']);
+  }
+
+  rolAuthenticated() {
+    let access_token = localStorage.getItem('access_token')
+    if (access_token){
+      let payload: any = decode(access_token)
+      console.log(payload.payload.rol)
+      return payload.payload.rol
+    }
   }
 
 

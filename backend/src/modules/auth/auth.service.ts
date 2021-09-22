@@ -32,8 +32,9 @@ export class AuthService {
         }
     }
 
-    forgot = async (data: any) => {
+    recover = async (data: any) => {
         const user = await this.userService.fyndByUserEmail(data.username)
+        data.password = this.crypt(data.password)
         return await this.userService.update(user.id, data)
     }
 

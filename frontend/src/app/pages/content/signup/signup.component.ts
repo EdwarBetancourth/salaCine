@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { MustMatch } from 'src/app/shared/directives/must-match.directive'
 
 @Component({
   selector: 'app-signup',
@@ -35,7 +36,7 @@ export class SignupComponent implements OnDestroy {
       acepted: [false, Validators.requiredTrue],
       rol: ['', [Validators.required]]
     }, {
-      validator: this.passwordMatchValidator('password', 'passwordc')
+      validator: MustMatch('password', 'passwordc')
     })
   }
 
@@ -49,18 +50,6 @@ export class SignupComponent implements OnDestroy {
         this.router.navigate(['full'])
       )
       this.listSubscriptions.push( sub$ )
-    }
-  }
-
-  passwordMatchValidator(password: string, passwordc: string) {
-    return (formGroup: FormGroup) => {
-      const control_password = formGroup.controls[password];
-      const control_passwordc = formGroup.controls[passwordc];
-      if (control_password.value !== control_passwordc.value) {
-        control_passwordc.setErrors({ validaPass: true });
-      } else {
-        control_passwordc.setErrors(null);
-      }
     }
   }
 
