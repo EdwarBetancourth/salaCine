@@ -8,6 +8,10 @@ body {
     color: white;
 }
 
+.admin {
+    display: none;
+}
+
 .movie-list {
     list-style: none;
     display: flex;
@@ -19,4 +23,27 @@ body {
         width: 25%;
         padding: 15px;
     }
+}
+
+.search_input{
+    color: white;
+    border: 0;
+    background: rgb(53, 46, 46);
+    width: 550px;
+    caret-color:transparent;
+    line-height: 30px;
+    transition: width 0.4s linear;
+    padding: 0 40px;
+}
+
+.search_icon{
+    height: 30px;
+    width: 30px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
 }

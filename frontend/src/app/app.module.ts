@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FullComponent } from './layout/full/full.component';
 import { ContentComponent } from './layout/content/content.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
@@ -19,8 +18,7 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedModule,
-    NgbModule
+    SharedModule
   ],
   exports: [
     SharedModule

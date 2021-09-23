@@ -2,11 +2,28 @@
     <div class="row">
         <div class="col-3">
             <div class="sidebar">
-                <a routerLink="/full/administrator/create-movie" routerLinkActive="active"> Crear Pelicula</a>
-                <a routerLink="/full/administrator/create-room" routerLinkActive="active"> Crear Sala </a>
-                <a routerLink="/full/administrator/create-ticket" routerLinkActive="active"> Taquilla </a>
-                <a> Concurrentes </a>
-                <a> Usuarios </a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/full/administrator/create-movie"
+                            routerLinkActive="active">Crear Pelicula</a>
+                    </li>
+                    <li class="nav-item active-item">
+                        <a class="nav-link" routerLink="/full/administrator/create-room" 
+                            routerLinkActive="active">Crear Sala</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/full/administrator/create-ticket"
+                            routerLinkActive="active">Taquilla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/full/administrator/create-ticket"
+                            routerLinkActive="active">Concurrentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/full/administrator/create-ticket"
+                            routerLinkActive="active">Usuarios</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="col py-5">

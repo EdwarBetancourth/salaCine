@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { SmallMovieComponent } from './components/small-movie/small-movie.component';
 import { ViewMovieComponent } from './components/view-movie/view-movie.component';
 import { GeneralPipe } from './pipes/general.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminRolDirective } from './directives/admin-rol.directive';
 
 @NgModule({
   declarations: [
@@ -13,18 +15,22 @@ import { GeneralPipe } from './pipes/general.pipe';
     NavbarComponent,
     SmallMovieComponent,
     ViewMovieComponent,
-    GeneralPipe
+    GeneralPipe,
+    AdminRolDirective
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ImageBrokenDirective,
     NavbarComponent,    
     SmallMovieComponent,
     ViewMovieComponent,
-    GeneralPipe
+    GeneralPipe,
+    AdminRolDirective
   ]
 })
 

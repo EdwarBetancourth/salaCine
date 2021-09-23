@@ -4,6 +4,7 @@
       <img appImageBroken src="./assets/cine.png" height="40" width="40">
   </div>
     <a class="navbar-brand text-danger">CinePolis</a>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/full/administrator" routerLinkActive="active">Administrador</a>
+          <a appAdminRol class="nav-link" routerLink="/full/administrator" routerLinkActive="active">Administrador</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/full/home" routerLinkActive="active" >Taquilla</a>
@@ -20,6 +21,14 @@
           <a class="nav-link" routerLink="/full/movies" routerLinkActive="active">Peliculas</a>
         </li>
       </ul>
+      <form class="d-flex mx-2">
+        <div class="input-group rounded ">
+          <i class="search_icon fa fa-search"></i>
+          <input type="search" class="search_input form-control rounded-pill bg-dark text-white" 
+          placeholder="Buscar pelicula" aria-label="Search" [formControl]="search" />
+        </div>
+      </form>
+      <br>
       <a type="button" class="btn btn-outline-secondary" (click)="logout()" >Cerrar Sesión</a>
     </div>
   </div>

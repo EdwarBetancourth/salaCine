@@ -7,9 +7,6 @@ import { CreateRoomComponent } from './create-room/create-room.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTicketsComponent } from './create-tickets/create-tickets.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
 @NgModule({
   declarations: [
     CreateMovieComponent,
@@ -20,8 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     AdministratorRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    NgbModule
+    ReactiveFormsModule
   ]
 })
 export class AdministratorModule { }

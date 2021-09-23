@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AlertService } from '../alert/alert.service';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,7 +9,13 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  nameRol!: string;
+
+  constructor(
+    private authService: AuthService,
+    private alertService: AlertService, 
+    private router: Router
+    ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -26,8 +33,17 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.authService.rolAuthenticated();
-    return true;
+    this.nameRol = this.authService.rolAuthenticated();
+    if (this.nameRol) {
+      if (this.nameRol !== 'admin') {
+        this.alertService.alertError('No tienes permiso para ingresar a este menú');
+        this.router.navigate(['/full']);
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 
 
