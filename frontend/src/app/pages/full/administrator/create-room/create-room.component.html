@@ -1,13 +1,53 @@
-<h2> Crear Sala </h2>
-<form [formGroup]="formRoom" class="p-5" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-        <label for="name" class="form-label">Nombre:</label>
-        <input type="text" class="form-control" formControlName="name">
-        <div class="text-danger" *ngIf="controls.name.errors && (controls.name.touched || controls.name.dirty)">
-            <span *ngIf="controls.name.errors?.required">El campo es requerido.</span>
-        </div>
+<ng-template #content let-modal>
+    <div class="modal-header bg-dark">
+        <h2 class="modal-title bg-dark"> Crear Sala </h2>
+        <span aria-hidden="true" class="close text-white" (click)="modal.dismiss('Cross click')">&times;</span>
     </div>
-    <div class="mb-4">
-        <button type="submit" class="btn btn-danger" [disabled]="formRoom.invalid" >Guardar</button>
+    <div class="modal-body bg-dark">
+        <form [formGroup]="formRoom" class="p-5" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label for="name" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" formControlName="name">
+                <div class="text-danger" *ngIf="controls.name.errors && (controls.name.touched || controls.name.dirty)">
+                    <span *ngIf="controls.name.errors?.required">El campo es requerido.</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <button type="submit" class="btn btn-danger" [disabled]="formRoom.invalid">Guardar</button>
+            </div>
+        </form>
     </div>
-</form>
+</ng-template>
+
+<div class="d-flex py-5">
+    <button type="submit" class="btn btn-danger" (click)="openModal(content)">Crear Sala</button>
+</div>
+
+<div *ngIf="rooms.length > 0; else elseBlock">
+    <table class="table table-dark p-5">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Opciones</th>
+                <th scope="col" class="text-center">Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let room of rooms | general:search">
+                <th scope="row">
+                    <div class="col d-flex mx-1">
+                        <button type="button" class="btn btn-icon rounded bg-success text-white mx-1"
+                            (click)="openModal(content, room)"><i class="fa fa-pencil"></i></button>
+                        <button type="button" class="btn btn-icon rounded bg-danger text-white mx-1"
+                            (click)="delete(room.id)"><i class="fa fa-trash"></i></button>
+                    </div>
+                </th>
+                <td>{{room.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #elseBlock>
+    <div class="container p-5">
+        <p class="text-white"> No se encontro ningun registro.</p>
+    </div>
+</ng-template>

@@ -23,5 +23,13 @@ export class TicketsService {
     return this.http.get<Ticket[]>(this.urlApi)
   }
 
+  update(id: number, ticket: Ticket): Observable<Ticket> {
+    return this.http.patch<Ticket>(this.urlApi + id , ticket)
+  }
+
+  delete(id: number): Observable<Ticket> {
+    return this.http.delete<Ticket>(this.urlApi + id)
+  }
+
 
 }

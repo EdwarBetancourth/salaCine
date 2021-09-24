@@ -1,13 +1,9 @@
-<div *ngIf="rooms.length > 0; else elseBlock">
-    <div *ngFor="let room of rooms">
-        <fieldset>
-            <legend>Preferencias</legend>
-            <div class="row">
-                <div class="col p-2" *ngFor="let movie of movies | general:search">
-                    <app-small-movie [movie]="movie"></app-small-movie>
-                </div>
-            </div>
-        </fieldset>
+<div *ngIf="tickets.length > 0; else elseBlock">
+    <div class="row">
+        <div class="col p-2" *ngFor="let ticket of tickets">
+            <legend> {{ ticket.room.name }} </legend>
+            <app-small-movie [movie]="ticket.movie"></app-small-movie>
+        </div>
     </div>
 </div>
 <ng-template #elseBlock>

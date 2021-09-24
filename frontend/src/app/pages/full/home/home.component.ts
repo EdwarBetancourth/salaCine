@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Movie, Room } from 'src/app/interfaces';
+import { Movie, Room, Ticket } from 'src/app/interfaces';
 import { MovieService } from 'src/app/services/movie/movie.service';
 import { RoomService } from 'src/app/services/room/room.service';
 import { SearchService } from 'src/app/services/search/search.service';
+import { TicketsService } from 'src/app/services/tickets/tickets.service';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +16,13 @@ import { SearchService } from 'src/app/services/search/search.service';
 
 export class HomeComponent implements OnInit, OnDestroy {
 
-  movies: Movie[] = [];
-  rooms: Room[] = [];
+  tickets: Ticket[] = [];
   listSubscriptions: Subscription[] = [];
   search: string = "";
 
   constructor( 
-    private movieService: MovieService,
-    private roomService: RoomService,
-    private searchService:SearchService
+    private searchService:SearchService,
+    private ticketService: TicketsService
     ) { }
 
   ngOnInit(): void {
@@ -41,9 +40,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getAll (): void {
-    const sub$1 = this.movieService.getAll().subscribe( val => this.movies = val );
-    const sub$2 = this.roomService.getAll().pipe(tap(console.log)).subscribe( val => this.rooms = val );
-    this.listSubscriptions.push( sub$1, sub$2 )
+    const sub$ = this.ticketService.getAll()
+      .subscribe(
+        val => this.tickets = val
+      )
+    this.listSubscriptions.push( sub$ )
   }
 
 }

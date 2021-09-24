@@ -13,7 +13,7 @@ export class GeneralPipe implements PipeTransform {
 
     return items.filter(
       item =>
-        item[labelKey || 'name']
+        item[labelKey || 'name' ]
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) === true).slice(0, 10);
   }

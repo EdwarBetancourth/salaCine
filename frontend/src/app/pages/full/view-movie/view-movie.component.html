@@ -13,7 +13,7 @@
         <div *ngIf="tickets.length > 0; else ElseBlock">
           <small class="text-muted" *ngFor="let ticket of tickets">
             Sala {{ ticket.room_id }} hora de presentacion {{ ticket.hour }}pm &nbsp;&nbsp;
-            <button class="btn btn-danger">+</button>
+            <button class="btn btn-danger" (click)="addConcurrent(ticket)">+</button>
           </small>
         </div>
         <ng-template #ElseBlock>

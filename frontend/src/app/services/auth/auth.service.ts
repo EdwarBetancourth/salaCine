@@ -18,18 +18,26 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private alertService: AlertService
-    ) {
+  ) {
     this.urlApi = environment.apiURl + 'auth/'
-   }
+  }
 
   login(user: any): Observable<any> {
     return this.http.post<any>(this.urlApi + 'login', user)
-      .pipe( tap( (accessToken: any) => localStorage.setItem('access_token', accessToken['access_token']) ) )
+      .pipe(tap((accessToken: any) => {
+        localStorage.setItem('access_token', accessToken['access_token'])
+        let payload: any = decode(accessToken['access_token'])
+        localStorage.setItem('id_user', payload.payload.id)
+      }))
   }
 
   signup(user: any): Observable<any> {
     return this.http.post<any>(this.urlApi + 'signup', user)
-    .pipe( tap( (accessToken: any) => localStorage.setItem('access_token', accessToken['access_token']) ) )
+      .pipe(tap((accessToken: any) => {
+        localStorage.setItem('access_token', accessToken['access_token'])
+        let payload: any = decode(accessToken['access_token'])
+        localStorage.setItem('id_user', payload.payload.id)
+      }))
   }
 
   recover(user: any): Observable<any> {
@@ -38,12 +46,13 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('access_token')
+    localStorage.removeItem('id_user')
     this.router.navigate(['pages/login']);
   }
 
   rolAuthenticated() {
     let access_token = localStorage.getItem('access_token')
-    if (access_token){
+    if (access_token) {
       let payload: any = decode(access_token)
       console.log(payload)
       return payload.payload.rol
@@ -52,11 +61,11 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     let access_token = localStorage.getItem('access_token')
-    if (access_token){
+    if (access_token) {
       let payload: any = decode(access_token)
-      let expire = new Date(payload.exp*1000);
+      let expire = new Date(payload.exp * 1000);
       let hoy = new Date()
-      if (hoy > expire){
+      if (hoy > expire) {
         this.alertService.alertError('Su token a caducado');
         this.logout();
         return false

@@ -23,4 +23,13 @@ export class RoomService {
     return this.http.get<Room[]>(this.urlApi)
   }
 
+  update(id: number, room: Room): Observable<Room> {
+    return this.http.patch<Room>(this.urlApi + id , room)
+  }
+
+  delete(id: number): Observable<Room> {
+    return this.http.delete<Room>(this.urlApi + id)
+  }
+
+
 }

@@ -1,39 +1,84 @@
-<h2> Crear Sala </h2>
-<form [formGroup]="formTicket" class="p-5" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-        <label for="movie_id" class="form-label">Pelicula:</label>
-        <select class="form-select" aria-label="Default select example" formControlName="movie_id">
-            <option selected>Elegir Pelicula</option>
-            <option [value]="movie.code" *ngFor="let movie of movies">{{ movie.name | titlecase }}</option>
-          </select>
-        <div class="text-danger" *ngIf="controls.movie_id.errors && (controls.movie_id.touched || controls.movie_id.dirty)">
-            <span *ngIf="controls.movie_id.errors?.required">El campo es requerido.</span>
-        </div>
+<ng-template #content let-modal>
+    <div class="modal-header bg-dark">
+        <h2 class="modal-title bg-dark"> Registrar presentacion </h2>
+        <span aria-hidden="true" class="close text-white" (click)="modal.dismiss('Cross click')">&times;</span>
     </div>
-    <div class="mb-4">
-        <label for="room_id" class="form-label">Sala:</label>
-        <select class="form-select" aria-label="Default select example" formControlName="room_id">
-            <option selected>Elegir Sala</option>
-            <option [value]="room.id" *ngFor="let room of rooms">{{ room.name | titlecase }}</option>
-          </select>
-        <div class="text-danger" *ngIf="controls.room_id.errors && (controls.room_id.touched || controls.room_id.dirty)">
-            <span *ngIf="controls.room_id.errors?.required">El campo es requerido.</span>
-        </div>
+    <div class="modal-body bg-dark">
+        <form [formGroup]="formTicket" class="p-5" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label for="movie_id" class="form-label">Pelicula:</label>
+                <select class="form-select" aria-label="Default select example" formControlName="movie_id">
+                    <option selected>Elegir Pelicula</option>
+                    <option [value]="movie.code" *ngFor="let movie of movies">{{ movie.name | titlecase }}</option>
+                  </select>
+                <div class="text-danger" *ngIf="controls.movie_id.errors && (controls.movie_id.touched || controls.movie_id.dirty)">
+                    <span *ngIf="controls.movie_id.errors?.required">El campo es requerido.</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="room_id" class="form-label">Sala:</label>
+                <select class="form-select" aria-label="Default select example" formControlName="room_id">
+                    <option selected>Elegir Sala</option>
+                    <option [value]="room.id" *ngFor="let room of rooms">{{ room.name | titlecase }}</option>
+                  </select>
+                <div class="text-danger" *ngIf="controls.room_id.errors && (controls.room_id.touched || controls.room_id.dirty)">
+                    <span *ngIf="controls.room_id.errors?.required">El campo es requerido.</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="hour" class="form-label">Hora:</label>
+                <select class="form-select" aria-label="Default select example" formControlName="hour">
+                    <option selected>Elegir Sala</option>
+                    <option value="4" > 4 PM</option>
+                    <option value="6" > 6 PM</option>
+                    <option value="8" > 8 PM</option>
+                    <option value="10" > 10 PM</option>
+                  </select>
+                <div class="text-danger" *ngIf="controls.hour.errors && (controls.hour.touched || controls.hour.dirty)">
+                    <span *ngIf="controls.hour.errors?.required">El campo es requerido.</span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <button type="submit" class="btn btn-danger" [disabled]="formTicket.invalid" >Guardar</button>
+            </div>
+        </form>
     </div>
-    <div class="mb-4">
-        <label for="hour" class="form-label">Hora:</label>
-        <select class="form-select" aria-label="Default select example" formControlName="hour">
-            <option selected>Elegir Sala</option>
-            <option value="4" > 4 PM</option>
-            <option value="6" > 6 PM</option>
-            <option value="8" > 8 PM</option>
-            <option value="10" > 10 PM</option>
-          </select>
-        <div class="text-danger" *ngIf="controls.hour.errors && (controls.hour.touched || controls.hour.dirty)">
-            <span *ngIf="controls.hour.errors?.required">El campo es requerido.</span>
-        </div>
+</ng-template>
+
+<div class="d-flex py-5">
+    <button type="submit" class="btn btn-danger" (click)="openModal(content)">Registrar presentacion</button>
+</div>
+
+
+<div *ngIf="tickets.length > 0; else elseBlock">
+    <table class="table table-dark p-5">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Opciones</th>
+                <th scope="col" class="text-center">Nombre Sala</th>
+                <th scope="col" class="text-center">Nombre Pelicula</th>
+                <th scope="col" class="text-center">Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ticket of tickets | general:search">
+                <th scope="row">
+                    <div class="col d-flex mx-1">
+                        <button type="button" class="btn btn-icon rounded bg-success text-white mx-1"
+                            (click)="openModal(content, ticket)"><i class="fa fa-pencil"></i></button>
+                        <button type="button" class="btn btn-icon rounded bg-danger text-white mx-1"
+                            (click)="delete(ticket.id)"><i class="fa fa-trash"></i></button>
+                    </div>
+                </th>
+                <td>{{ticket.room.name}}</td>
+                <td>{{ticket.movie.name}}</td>
+                <td>{{ticket.hour}} &nbsp; PM</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #elseBlock>
+    <div class="container p-5">
+        <p class="text-white"> No se encontro ningun registro.</p>
     </div>
-    <div class="mb-4">
-        <button type="submit" class="btn btn-danger" [disabled]="formTicket.invalid" >Guardar</button>
-    </div>
-</form>
+</ng-template>

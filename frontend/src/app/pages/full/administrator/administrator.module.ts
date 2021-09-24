@@ -8,12 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTicketsComponent } from './create-tickets/create-tickets.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
     CreateMovieComponent,
     CreateRoomComponent,
-    CreateTicketsComponent
+    CreateTicketsComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
