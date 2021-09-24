@@ -7,6 +7,7 @@ import { ContentComponent } from './layout/content/content.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   exports: [
     SharedModule

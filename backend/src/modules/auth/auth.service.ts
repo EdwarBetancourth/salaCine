@@ -44,7 +44,7 @@ export class AuthService {
             const user = await this.userService.create(data);
             const { password, ...payload } = user;
             return {
-                access_token: this.jwtService.sign( payload, {
+                access_token: this.jwtService.sign( {payload}, {
                     expiresIn: '8h'
                 })
             }

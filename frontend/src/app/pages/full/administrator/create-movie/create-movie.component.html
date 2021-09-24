@@ -1,28 +1,63 @@
-<h2> Crear Pelicula </h2>
-<form [formGroup]="formMovie" class="p-5" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
+<ng-template #content let-modal>
+  <div class="modal-header bg-dark">
+    <h2 class="modal-title bg-dark"> Crear Pelicula </h2>
+    <span aria-hidden="true" class="close text-white" (click)="modal.dismiss('Cross click')">&times;</span>
+  </div>
+  <div class="modal-body bg-dark">
+    <form [formGroup]="formMovie" class="p-5" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
         <label for="name" class="form-label">Nombre:</label>
         <input type="text" class="form-control" formControlName="name">
         <div class="text-danger" *ngIf="controls.name.errors && (controls.name.touched || controls.name.dirty)">
-            <span *ngIf="controls.name.errors?.required">El campo es requerido.</span>
+          <span *ngIf="controls.name.errors?.required">El campo es requerido.</span>
         </div>
-    </div>
-    <div class="mb-4">
+      </div>
+      <div class="mb-4">
         <label for="description" class="form-label">Descripción:</label>
         <textarea type="text" class="form-control" formControlName="description"></textarea>
         <div class="text-danger"
-            *ngIf="controls.description.errors && (controls.description.touched || controls.description.dirty)">
-            <span *ngIf="controls.description.errors?.required">El campo es requerido.</span>
+          *ngIf="controls.description.errors && (controls.description.touched || controls.description.dirty)">
+          <span *ngIf="controls.description.errors?.required">El campo es requerido.</span>
         </div>
-    </div>
-    <div class="mb-4">
+      </div>
+      <div class="mb-4">
         <label for="image" class="form-label">Imagen:</label>
         <input type="text" class="form-control" formControlName="image">
         <div class="text-danger" *ngIf="controls.image.errors && (controls.image.touched || controls.image.dirty)">
-            <span *ngIf="controls.image.errors?.required">El campo es requerido.</span>
+          <span *ngIf="controls.image.errors?.required">El campo es requerido.</span>
         </div>
-    </div>
-    <div class="mb-4">
-        <button type="submit" class="btn btn-danger" [disabled]="formMovie.invalid" >Guardar</button>
-    </div>
-</form>
+      </div>
+      <div class="mb-4">
+        <button type="submit" class="btn btn-danger" [disabled]="formMovie.invalid">Guardar</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<div class="d-flex py-5">
+  <button type="submit" class="btn btn-danger" (click)="openModal(content)">Crear Pelicula</button>
+</div>
+
+<table class="table table-dark p-5">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">Opciones</th>
+      <th scope="col" class="text-center">Nombre</th>
+      <th scope="col" class="text-center">Descripción</th>
+      <th scope="col" class="text-center">Imagen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of movies | general:search">
+      <th scope="row">
+        <div class="col d-flex mx-1">
+          <button type="button" class="btn btn-icon rounded bg-success text-white mx-1" (click)="openModal(content, movie)"><i class="fa fa-pencil"></i></button>
+          <button type="button" class="btn btn-icon rounded bg-danger text-white mx-1" (click)="delete(movie.code)"><i class="fa fa-trash"></i></button>
+        </div>
+      </th>
+      <td>{{movie.name}}</td>
+      <td>{{movie.description}}</td>
+      <td>{{movie.image}}</td>
+    </tr>
+  </tbody>
+</table>

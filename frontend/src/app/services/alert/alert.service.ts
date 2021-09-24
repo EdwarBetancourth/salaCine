@@ -16,4 +16,8 @@ export class AlertService {
     return Swal.fire('Registro guardado', 'El registro se guardo con exito.', 'success');
   }
 
+  alertDelete = () => {
+    return Swal.fire('Registro guardado', 'El registro se elimino con exito.', 'success');
+  }
+
 }

@@ -27,4 +27,12 @@ export class MovieService {
     return this.http.get<Movie>(this.urlApi + id)
   }
 
+  update(id: number, movie: Movie): Observable<Movie> {
+    return this.http.patch<Movie>(this.urlApi + id , movie)
+  }
+
+  delete(id: number): Observable<Movie> {
+    return this.http.delete<Movie>(this.urlApi + id)
+  }
+
 }

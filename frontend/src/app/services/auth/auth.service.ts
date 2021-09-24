@@ -45,7 +45,7 @@ export class AuthService {
     let access_token = localStorage.getItem('access_token')
     if (access_token){
       let payload: any = decode(access_token)
-      console.log(payload.payload.rol)
+      console.log(payload)
       return payload.payload.rol
     }
   }

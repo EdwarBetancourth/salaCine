@@ -6,6 +6,8 @@ import { CreateMovieComponent } from './create-movie/create-movie.component';
 import { CreateRoomComponent } from './create-room/create-room.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTicketsComponent } from './create-tickets/create-tickets.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { CreateTicketsComponent } from './create-tickets/create-tickets.componen
     CommonModule,
     AdministratorRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
+    NgbModule
   ]
 })
 export class AdministratorModule { }
